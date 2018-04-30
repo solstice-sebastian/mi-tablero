@@ -1,1 +1,19 @@
-{{outlet}}
+{{#paper-content class="md-whiteframe-z1 list-demo"}}
+  {{#paper-list}}
+    {{#each model as |item|}}
+      {{#paper-item}}
+        <div class="md-list-item-text">
+          <h3>{{item.symbol}}</h3>
+          <h4>Last buy in: {{item.lastBuyIn.price}}</h4>
+          <p>
+            Current price: {{item.currentPrice}}
+          </p>
+          <p>
+            Current P/L: {{item.currentProfitLoss}}
+          </p>
+        </div>
+      {{/paper-item}}
+      {{paper-divider}} {{!-- OR {{paper-divider inset=true}} --}}
+    {{/each}}
+  {{/paper-list}}
+{{/paper-content}}

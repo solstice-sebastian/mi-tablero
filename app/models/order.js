@@ -15,5 +15,4 @@ export default DS.Model.extend({
   icebergQty: DS.attr('number'),
   time: DS.attr('number'),
   isWorking: DS.attr('boolean'),
-  dashboard: DS.belongsTo('dashboard'),
 });
