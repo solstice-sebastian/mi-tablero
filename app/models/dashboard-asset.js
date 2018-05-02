@@ -1,3 +1,4 @@
+import { gt } from '@ember/object/computed';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -6,4 +7,6 @@ export default DS.Model.extend({
   currentProfitLoss: DS.attr('number'),
   openOrders: DS.hasMany('order'),
   lastBuyIn: DS.belongsTo('order'),
+
+  isPositive: gt('currentProfitLoss', 0.0001),
 });

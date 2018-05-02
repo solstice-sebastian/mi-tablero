@@ -1,3 +1,4 @@
+{{!--
 {{#paper-content class="md-whiteframe-z1 list-demo"}}
   {{#paper-list}}
     {{#each model as |activeAsset|}}
@@ -13,7 +14,43 @@
           </p>
         </div>
       {{/paper-item}}
-      {{paper-divider}} {{!-- OR {{paper-divider inset=true}} --}}
+      {{paper-divider}}
     {{/each}}
   {{/paper-list}}
 {{/paper-content}}
+--}}
+
+{{#each model as |activeAsset|}}
+  {{#paper-card}}
+    {{#paper-card-content}}
+      <h2>{{activeAsset.id}}</h2>
+    {{/paper-card-content}}
+    <div class="md-actions last-buy-in" layout="row" layout-align="start center">
+      <label class="asset-stat-label">
+        Last buy in:
+      </label>
+      <span class="asset-stat-value">
+        {{activeAsset.lastBuyIn.price}}
+      </span>
+    </div>
+    <div class="md-actions current-price" layout="row" layout-align="start center">
+      <label class="asset-stat-label">
+        Current price:
+      </label>
+      <span class="asset-stat-value">
+        {{activeAsset.currentPrice}}
+      </span>
+    </div>
+    <div class="md-actions profit-loss" layout="row" layout-align="start center">
+      <label class="asset-stat-label">
+        Current P/L:
+      </label>
+      <span class="asset-stat-value {{if activeAsset.isPositive "positive" "negative"}}">
+        {{pretty-percent activeAsset.currentProfitLoss}}
+      </span>
+    </div>
+
+      {{!-- {{#paper-button}}Action 1{{/paper-button}}
+      {{#paper-button}}Action 2{{/paper-button}} --}}
+  {{/paper-card}}
+{{/each}}

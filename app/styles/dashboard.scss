@@ -1,0 +1,13 @@
+.asset-stat-label {
+  margin-right: 4px;
+}
+
+.asset-stat-value {
+  font-weight: 600;
+  &.negative {
+    color: red;
+  }
+  &.positive {
+    color: green;
+  }
+}
