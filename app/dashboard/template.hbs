@@ -1,56 +1,53 @@
-{{!--
-{{#paper-content class="md-whiteframe-z1 list-demo"}}
-  {{#paper-list}}
-    {{#each model as |activeAsset|}}
-      {{#paper-item}}
-        <div class="md-list-item-text">
-          <h3>{{activeAsset.id}}</h3>
-          <h4>Last buy in: {{activeAsset.lastBuyIn.price}}</h4>
-          <p>
-            Current price: {{activeAsset.currentPrice}}
-          </p>
-          <p>
-            Current P/L: {{pretty-percent activeAsset.currentProfitLoss}}
-          </p>
+<div class="active-assets">
+  {{#each model as |activeAsset|}}
+    {{#paper-card class="md-card"}}
+      {{#paper-card-content}}
+        <h2>{{activeAsset.id}} -
+          <span class="asset-stat__value {{if activeAsset.isPositive "positive" "negative"}}">
+            {{pretty-percent activeAsset.currentProfitLoss}}
+          </span>
+        </h2>
+
+        <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
+          <label class="asset-stat__label">
+            Last buy in:
+          </label>
+          <span class="asset-stat__value">
+            {{activeAsset.lastBuyIn.price}}
+          </span>
         </div>
-      {{/paper-item}}
-      {{paper-divider}}
-    {{/each}}
-  {{/paper-list}}
-{{/paper-content}}
---}}
 
-{{#each model as |activeAsset|}}
-  {{#paper-card}}
-    {{#paper-card-content}}
-      <h2>{{activeAsset.id}}</h2>
-    {{/paper-card-content}}
-    <div class="md-actions last-buy-in" layout="row" layout-align="start center">
-      <label class="asset-stat-label">
-        Last buy in:
-      </label>
-      <span class="asset-stat-value">
-        {{activeAsset.lastBuyIn.price}}
-      </span>
-    </div>
-    <div class="md-actions current-price" layout="row" layout-align="start center">
-      <label class="asset-stat-label">
-        Current price:
-      </label>
-      <span class="asset-stat-value">
-        {{activeAsset.currentPrice}}
-      </span>
-    </div>
-    <div class="md-actions profit-loss" layout="row" layout-align="start center">
-      <label class="asset-stat-label">
-        Current P/L:
-      </label>
-      <span class="asset-stat-value {{if activeAsset.isPositive "positive" "negative"}}">
-        {{pretty-percent activeAsset.currentProfitLoss}}
-      </span>
-    </div>
+        <div class="active-asset" layout="row" layout-align="start center" data-id="current-price">
+          <label class="asset-stat__label">
+            Current price:
+          </label>
+          <span class="asset-stat__value">
+            {{activeAsset.currentPrice}}
+          </span>
+        </div>
+      {{/paper-card-content}}
 
-      {{!-- {{#paper-button}}Action 1{{/paper-button}}
-      {{#paper-button}}Action 2{{/paper-button}} --}}
-  {{/paper-card}}
-{{/each}}
+      {{#paper-card-content}}
+        {{paper-divider}}
+      {{/paper-card-content}}
+
+      {{#paper-card-content}}
+        {{!-- open orders --}}
+        {{#each activeAsset.openOrders as |order|}}
+          {{#order-widget
+            order = order
+          }}{{/order-widget}}
+        {{/each}}
+
+        {{#paper-card-content}}
+          {{paper-divider}}
+        {{/paper-card-content}}
+
+        {{#order-widget
+          order = activeAsset.newOrder
+        }}{{/order-widget}}
+      {{/paper-card-content}}
+
+    {{/paper-card}}
+  {{/each}}
+</div>

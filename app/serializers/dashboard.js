@@ -10,11 +10,19 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
           this.store.createRecord('order', Object.assign({}, order, { id: order.orderId }))
         );
       }
+
+      const balance = this.store.createRecord('balance');
+      if (dashboardAsset.balance) {
+        const { asset, free, qty, locked } = dashboardAsset.balance;
+        balance.setProperties({ asset, free, qty, locked, id: asset });
+      }
+
       this.store.createRecord(
         'dashboard-asset',
         Object.assign({}, dashboardAsset, {
           id: dashboardAsset.asset,
           openOrders,
+          balance,
           lastBuyIn: this.store.createRecord(
             'order',
             Object.assign({}, dashboardAsset.lastBuyIn, { id: dashboardAsset.lastBuyIn.orderId })

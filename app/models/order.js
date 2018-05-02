@@ -1,19 +1,24 @@
 import DS from 'ember-data';
+import { empty } from '@ember/object/computed';
 
-export default DS.Model.extend({
-  symbol: DS.attr('string'),
-  orderId: DS.attr('number'),
-  clientOrderId: DS.attr('number'),
-  price: DS.attr('number'),
-  origQty: DS.attr('number'),
-  executedQty: DS.attr('number'),
-  status: DS.attr('string'),
-  timeInForce: DS.attr('number'),
-  type: DS.attr('string'),
-  side: DS.attr('string'),
-  stopPrice: DS.attr('number'),
-  icebergQty: DS.attr('number'),
-  time: DS.attr('number'),
-  isWorking: DS.attr('boolean'),
-  lockedProfitLoss: DS.attr('number'),
+const { attr, Model } = DS;
+
+export default Model.extend({
+  symbol: attr('string'),
+  orderId: attr('number'),
+  clientOrderId: attr('number'),
+  price: attr('number'),
+  origQty: attr('number'),
+  executedQty: attr('number'),
+  status: attr('string'),
+  timeInForce: attr('number'),
+  type: attr('string'),
+  side: attr('string'),
+  stopPrice: attr('number'),
+  icebergQty: attr('number'),
+  time: attr('number'),
+  isWorking: attr('boolean'),
+  profitLoss: attr('number'),
+
+  isNew: empty('orderId'),
 });

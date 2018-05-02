@@ -32,6 +32,7 @@ module.exports = {
       }
     ],
     'func-names': 'off',
+    'prefer-arrow-callback': 'off',
     'import/extensions': 0,
     'import/first': 0,
     'no-underscore-dangle': 0,

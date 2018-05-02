@@ -1,12 +1,17 @@
 import { gt } from '@ember/object/computed';
 import DS from 'ember-data';
 
-export default DS.Model.extend({
-  asset: DS.attr('string'),
-  currentPrice: DS.attr('number'),
-  currentProfitLoss: DS.attr('number'),
-  openOrders: DS.hasMany('order'),
-  lastBuyIn: DS.belongsTo('order'),
+const { attr, hasMany, belongsTo, Model } = DS;
+
+export default Model.extend({
+  asset: attr('string'),
+  currentPrice: attr('number'),
+  currentProfitLoss: attr('number'),
+  openOrders: hasMany('order'),
+  lastBuyIn: belongsTo('order'),
+  newOrder: belongsTo('order'),
+  balance: belongsTo('balance'),
 
   isPositive: gt('currentProfitLoss', 0.0001),
+  hasOpenOrders: gt('openOrders.length', 0),
 });

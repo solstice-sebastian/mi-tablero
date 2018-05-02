@@ -1,13 +1,25 @@
-.asset-stat-label {
-  margin-right: 4px;
+.active-assets {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.asset-stat-value {
-  font-weight: 600;
-  &.negative {
-    color: red;
+.md-card {
+  flex-grow: 1;
+  width: 30%;
+}
+
+.asset-stat {
+  &__label {
+    margin-right: 4px;
   }
-  &.positive {
-    color: green;
+
+  &__value {
+    font-weight: 600;
+    &.negative {
+      color: red;
+    }
+    &.positive {
+      color: green;
+    }
   }
 }
