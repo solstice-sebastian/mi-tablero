@@ -6,7 +6,7 @@ module('Unit | Model | order', (hooks) => {
   setupTest(hooks);
 
   // Replace this with your real tests.
-  test('it exists', (assert) => {
+  test('it exists', function(assert) {
     const store = this.owner.lookup('service:store');
     const model = run(() => store.createRecord('order', {}));
     assert.ok(model);

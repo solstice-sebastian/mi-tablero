@@ -1,15 +1,15 @@
 {{#paper-content class="md-whiteframe-z1 list-demo"}}
   {{#paper-list}}
-    {{#each model as |item|}}
+    {{#each model as |activeAsset|}}
       {{#paper-item}}
         <div class="md-list-item-text">
-          <h3>{{item.id}}</h3>
-          <h4>Last buy in: {{item.lastBuyIn.price}}</h4>
+          <h3>{{activeAsset.id}}</h3>
+          <h4>Last buy in: {{activeAsset.lastBuyIn.price}}</h4>
           <p>
-            Current price: {{item.currentPrice}}
+            Current price: {{activeAsset.currentPrice}}
           </p>
           <p>
-            Current P/L: {{item.currentProfitLoss}}
+            Current P/L: {{pretty-percent activeAsset.currentProfitLoss}}
           </p>
         </div>
       {{/paper-item}}

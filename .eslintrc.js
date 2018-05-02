@@ -31,7 +31,9 @@ module.exports = {
         'arrowParens': 'always'
       }
     ],
+    'func-names': 'off',
     'import/extensions': 0,
+    'import/first': 0,
     'no-underscore-dangle': 0,
     'import/no-unresolved': 0,
     'import/no-extraneous-dependencies': 0,

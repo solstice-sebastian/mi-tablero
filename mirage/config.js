@@ -1,6 +1,7 @@
-import dashboardMock from './mocks/dashabord';
+import dashboardMock from './mocks/dashboard';
 
 export default function() {
-  this.urlPrefix = 'http://localhost:5000'; // make this `http://localhost:8080`, for example, if your API is on a different server
-  this.get('/dashboard', () => dashboardMock);
+  this.urlPrefix = 'http://localhost:5000';
+  this.namespace = '';
+  this.get('/dashboards', () => dashboardMock);
 }
