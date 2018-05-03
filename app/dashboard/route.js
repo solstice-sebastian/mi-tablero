@@ -1,16 +1,10 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
-import getPercentDiff from 'utils/get-percent-diff.js';
+import getPercentDiff from '../utils/get-percent-diff';
 
 export default Route.extend({
   model() {
-    return this.store.findAll('dashboard').then(() =>
-      this.store.peekAll('dashboard-asset').map((dashboardAsset) => {
-        const newOrder = this.buildNewOrder(dashboardAsset);
-        set(dashboardAsset, 'newOrder', newOrder);
-        return dashboardAsset;
-      })
-    );
+    return this.store.findAll('dashboard').then(() => this.store.peekAll('dashboard-asset'));
   },
 
   buildNewOrder(dashboardAsset) {
@@ -23,5 +17,14 @@ export default Route.extend({
       profitLoss,
       stopPrice,
     });
+  },
+
+  actions: {
+    create(dashboardAsset) {
+      const newOrder = this.buildNewOrder(dashboardAsset);
+      const orders = get(dashboardAsset, 'openOrders');
+      orders.addObject(newOrder);
+      console.log('added', newOrder);
+    },
   },
 });

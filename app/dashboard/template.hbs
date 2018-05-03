@@ -27,25 +27,22 @@
         </div>
       {{/paper-card-content}}
 
-      {{#paper-card-content}}
-        {{paper-divider}}
-      {{/paper-card-content}}
+      {{!-- orders --}}
 
       {{#paper-card-content}}
-        {{!-- open orders --}}
-        {{#each activeAsset.openOrders as |order|}}
+        {{#each activeAsset.orders as |order|}}
+          {{#paper-card-content}}
+            {{paper-divider}}
+          {{/paper-card-content}}
+
           {{#order-widget
             order = order
           }}{{/order-widget}}
         {{/each}}
 
-        {{#paper-card-content}}
-          {{paper-divider}}
-        {{/paper-card-content}}
-
-        {{#order-widget
-          order = activeAsset.newOrder
-        }}{{/order-widget}}
+        {{#paper-button raised=true click=(action "createOrder" activeAsset)}}
+          Create order
+        {{/paper-button}}
       {{/paper-card-content}}
 
     {{/paper-card}}

@@ -1,4 +1,4 @@
-import { gt } from '@ember/object/computed';
+import { gt, alias } from '@ember/object/computed';
 import DS from 'ember-data';
 
 const { attr, hasMany, belongsTo, Model } = DS;
@@ -12,6 +12,7 @@ export default Model.extend({
   newOrder: belongsTo('order'),
   balance: belongsTo('balance'),
 
+  orders: alias('openOrders'),
   isPositive: gt('currentProfitLoss', 0.0001),
   hasOpenOrders: gt('openOrders.length', 0),
 });

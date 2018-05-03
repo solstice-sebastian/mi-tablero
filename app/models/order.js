@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { empty } from '@ember/object/computed';
+// import { empty } from '@ember/object/computed';
 
 const { attr, Model } = DS;
 
@@ -19,6 +19,4 @@ export default Model.extend({
   time: attr('number'),
   isWorking: attr('boolean'),
   profitLoss: attr('number'),
-
-  isNew: empty('orderId'),
 });
