@@ -7,7 +7,7 @@
 
 <h2>{{order.symbol}} :
   <span class="asset-stat__value">
-    {{pretty-percent profitLoss isColored=true}}
+    {{pretty-percent value=profitLoss isColored=true}}
   </span>
 </h2>
 
@@ -24,7 +24,8 @@
 }}
 
 {{paper-input
-  label="Stop price"
+  label=stopPriceLabel
   value=order.stopPrice
   onChange="changeStopPrice"
 }}
+

@@ -11,6 +11,5 @@ module('Integration | Component | pretty-percent', function(hooks) {
     await render(hbs`{{pretty-percent value=value}}`);
 
     assert.equal(this.element.textContent.trim(), '12.00%');
-    assert.deepEqual(this.element.classList, ['pretty-percent', 'positive']);
   });
 });

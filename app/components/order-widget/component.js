@@ -1,9 +1,10 @@
 import Component from '@ember/component';
 import { computed, get, set } from '@ember/object';
 import getPercentDiff from '../../utils/get-percent-diff';
+import calcPrettyPercent from '../../utils/calc-pretty-percent';
 
 export default Component.extend({
-  classNames: ['order-widget', 'statusClass', 'profitLossClass'],
+  classNames: ['order-widget'],
 
   order: null,
 
@@ -18,19 +19,21 @@ export default Component.extend({
     return getPercentDiff(currentPrice, price);
   }),
 
-  stopLimitDifference: computed('order.{price,stopPrice}', function() {
+  stopPriceDiff: computed('order.{price,stopPrice}', function() {
     const { price, stopPrice } = get(this, 'order');
-    return getPercentDiff(price, stopPrice);
+    const diff = getPercentDiff(price, stopPrice);
+    const prettyPercent = calcPrettyPercent(diff);
+    return prettyPercent;
+  }),
+
+  stopPriceLabel: computed('stopPriceDiff', function() {
+    const stopPriceDiff = get(this, 'stopPriceDiff');
+    return `Stop limit : ${stopPriceDiff}`;
   }),
 
   statusClass: computed('order.status', function() {
     const status = get(this, 'order.status');
     return String.dasherize(status);
-  }),
-
-  profitLossClass: computed('profitLoss', function() {
-    const profitLoss = get(this, 'profitLoss');
-    return profitLoss > 0.001 ? 'positive' : 'negative';
   }),
 
   actions: {

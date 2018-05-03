@@ -124,7 +124,7 @@ export default {
           symbol: 'XRPBTC',
           orderId: 41765075,
           clientOrderId: 'ios_d4905da457d743449ce9459e0a96d271',
-          price: '0.00000000',
+          price: '0.00005432',
           origQty: '348.00000000',
           executedQty: '348.00000000',
           status: 'FILLED',

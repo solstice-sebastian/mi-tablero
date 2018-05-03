@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
+import calcPrettyPercent from '../../utils/calc-pretty-percent';
 
 export default Component.extend({
   tagName: 'span',
@@ -21,6 +22,6 @@ export default Component.extend({
 
   output: computed('value', function() {
     const value = get(this, 'value');
-    return `${(+value * 100).toFixed(2)}%`;
+    return calcPrettyPercent(value);
   }),
 });
