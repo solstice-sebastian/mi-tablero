@@ -1,20 +1,31 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
-import getPercentDiff from '../utils/get-percent-diff';
+import { isNone } from '@ember/utils';
 
 export default Route.extend({
-  model() {
+  base: 'BTC',
+
+  model({ base }) {
+    if (isNone(base) === false) {
+      set(this, 'base', base);
+    }
     return this.store.findAll('dashboard').then(() => this.store.peekAll('dashboard-asset'));
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    set(controller, 'model', model);
+    set(controller, 'base', get(this, 'base'));
   },
 
   buildNewOrder(dashboardAsset) {
     const price = get(dashboardAsset, 'currentPrice');
     const stopPrice = get(dashboardAsset, 'currentPrice');
     // profit loss from current price
-    const profitLoss = getPercentDiff(price, stopPrice);
+    const symbol = `${get(dashboardAsset, 'asset')}${get(this, 'base')}`;
     return this.store.createRecord('order', {
+      symbol,
       price,
-      profitLoss,
       stopPrice,
     });
   },
@@ -24,7 +35,6 @@ export default Route.extend({
       const newOrder = this.buildNewOrder(dashboardAsset);
       const orders = get(dashboardAsset, 'openOrders');
       orders.addObject(newOrder);
-      console.log('added', newOrder);
     },
   },
 });

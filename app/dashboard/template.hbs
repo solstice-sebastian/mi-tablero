@@ -2,9 +2,9 @@
   {{#each model as |activeAsset|}}
     {{#paper-card class="md-card"}}
       {{#paper-card-content}}
-        <h2>{{activeAsset.id}} -
-          <span class="asset-stat__value {{if activeAsset.isPositive "positive" "negative"}}">
-            {{pretty-percent activeAsset.currentProfitLoss}}
+        <h2>{{activeAsset.id}} :
+          <span class="asset-stat__value">
+            {{pretty-percent value=activeAsset.currentProfitLoss isColored=true}}
           </span>
         </h2>
 
@@ -31,12 +31,12 @@
 
       {{#paper-card-content}}
         {{#each activeAsset.orders as |order|}}
-          {{#paper-card-content}}
-            {{paper-divider}}
-          {{/paper-card-content}}
+
+          {{paper-divider}}
 
           {{#order-widget
             order = order
+            currentPrice = activeAsset.currentPrice
           }}{{/order-widget}}
         {{/each}}
 

@@ -1,0 +1,8 @@
+.pretty-percent {
+  &.negative {
+    color: red;
+  }
+  &.positive {
+    color: green;
+  }
+}

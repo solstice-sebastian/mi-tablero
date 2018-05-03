@@ -23,7 +23,6 @@ export default {
           qty: '50.00000000',
         },
         currentPrice: '0.00155190',
-        currentProfitLoss: 0.5121309559,
         openOrders: [],
         balance: {
           asset: 'BNB',
@@ -53,7 +52,6 @@ export default {
           qty: '36.99000000',
         },
         currentPrice: '0.00123700',
-        currentProfitLoss: 0.3945885006,
         openOrders: [],
         balance: {
           asset: 'HSR',
@@ -83,7 +81,6 @@ export default {
           qty: '14.47000000',
         },
         currentPrice: '0.00186200',
-        currentProfitLoss: 0.0338700722,
         openOrders: [],
         balance: {
           asset: 'OMG',
@@ -113,7 +110,6 @@ export default {
           qty: '1.01400000',
         },
         currentPrice: '0.02989500',
-        currentProfitLoss: -0.1152184207,
         openOrders: [],
         balance: {
           asset: 'DGD',
@@ -143,7 +139,6 @@ export default {
           qty: '348.00000000',
         },
         currentPrice: '0.00009280',
-        currentProfitLoss: null,
         openOrders: [],
         balance: {
           asset: 'XRP',
