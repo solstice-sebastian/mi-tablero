@@ -56,20 +56,25 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
   }
 
-  if (environment === 'production') {
+  const isProd = environment === 'production';
+  const isMirage = environment === 'mirage';
+
+  if (isProd) {
     // here you can enable a production-specific feature
   }
 
   /**
    * environment variables
    */
-  ENV.VARS = Object.assign({}, process.env);
+  ENV.VARS = Object.assign({}, process.env, {
+    API_HOST: isMirage ? 'http://localhost:5000' : undefined,
+  });
 
   /**
    * addons
    */
   ENV['ember-cli-mirage'] = {
-    enabled: environment === 'mirage',
+    enabled: isMirage,
   };
 
   ENV['ember-paper'] = {

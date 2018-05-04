@@ -3,7 +3,7 @@ import { get, set } from '@ember/object';
 import { later } from '@ember/runloop';
 
 export default Service.extend({
-  store: inject('store'),
+  store: inject(),
 
   timer: null,
 
@@ -12,7 +12,7 @@ export default Service.extend({
     const tickers = await store.findAll('ticker');
 
     if (timeout) {
-      const timer = later(this.update, timeout);
+      const timer = later(this, this.update, timeout);
       set(this, 'timer', timer);
       return timer;
     }
