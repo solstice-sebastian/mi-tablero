@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('dotenv').config();
+
 module.exports = function(environment) {
   const ENV = {
     modulePrefix: 'mi-tablero',
@@ -59,9 +61,13 @@ module.exports = function(environment) {
   }
 
   /**
+   * environment variables
+   */
+  ENV.VARS = Object.assign({}, process.env);
+
+  /**
    * addons
    */
-
   ENV['ember-cli-mirage'] = {
     enabled: environment === 'mirage',
   };

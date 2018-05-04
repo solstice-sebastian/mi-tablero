@@ -1,14 +1,19 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { inject } from '@ember/service';
 
 export default Route.extend({
+  tickerService: inject('ticker'),
+
   base: 'BTC',
 
   model({ base }) {
     if (isNone(base) === false) {
       set(this, 'base', base);
     }
+    const tickerService = get(this, 'tickerService');
+    tickerService.startPolling(5000);
     return this.store.findAll('dashboard').then(() => this.store.peekAll('dashboard-asset'));
   },
 
