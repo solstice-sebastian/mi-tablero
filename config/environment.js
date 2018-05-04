@@ -58,8 +58,16 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
+  /**
+   * addons
+   */
+
   ENV['ember-cli-mirage'] = {
     enabled: environment === 'mirage',
+  };
+
+  ENV['ember-paper'] = {
+    insertFontLinks: false,
   };
 
   return ENV;

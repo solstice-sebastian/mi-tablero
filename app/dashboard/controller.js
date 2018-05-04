@@ -8,12 +8,12 @@ export default Controller.extend({
 
   actions: {
     createOrder(activeAsset) {
-      set(this, 'hasNewOrder', true);
+      set(activeAsset, 'hasNewOrder', true);
       this.send('create', activeAsset);
     },
 
     removeOrder(activeAsset) {
-      set(this, 'hasNewOrder', false);
+      set(activeAsset, 'hasNewOrder', false);
       this.send('remove', activeAsset);
     },
   },

@@ -39,7 +39,7 @@ export default Component.extend({
 
   priceMin: computed(function() {
     const price = +get(this, 'order.price');
-    return Math.floor(price / 2);
+    return Math.max(Math.floor(price / 2), 0.000001);
   }),
 
   statusClass: computed('order.status', function() {

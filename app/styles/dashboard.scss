@@ -16,5 +16,9 @@
 
   &__value {
     font-weight: 600;
+
+    &.current-price {
+      color: orange;
+    }
   }
 }

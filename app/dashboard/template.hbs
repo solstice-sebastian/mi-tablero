@@ -8,22 +8,26 @@
           </span>
         </h2>
 
-        <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
-          <label class="asset-stat__label">
-            Last buy in:
-          </label>
-          <span class="asset-stat__value">
-            {{activeAsset.lastBuyIn.price}}
-          </span>
+        <div class="active-asset" layout="row" layout-align="start center" data-id="current-price">
+          <h3>
+            <label class="asset-stat__label">
+              Current price:
+            </label>
+            <span class="asset-stat__value current-price">
+              {{activeAsset.currentPrice}}
+            </span>
+          </h3>
         </div>
 
-        <div class="active-asset" layout="row" layout-align="start center" data-id="current-price">
-          <label class="asset-stat__label">
-            Current price:
-          </label>
-          <span class="asset-stat__value">
-            {{activeAsset.currentPrice}}
-          </span>
+        <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
+          <small>
+            <label class="asset-stat__label">
+              Last buy in:
+            </label>
+            <span class="asset-stat__value">
+              {{activeAsset.lastBuyIn.price}}
+            </span>
+          </small>
         </div>
       {{/paper-card-content}}
 
@@ -40,16 +44,21 @@
           }}{{/order-widget}}
         {{/each}}
 
-        {{!-- {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
+        {{#if activeAsset.hasNewOrder}}
+          {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
             Remove order
-        {{/paper-button}} --}}
-        {{#paper-button raised=true click=(action "createOrder" activeAsset)}}
-          Create order
-        {{/paper-button}}
+          {{/paper-button}}
+        {{else}}
+          {{#paper-button raised=true click=(action "createOrder" activeAsset)}}
+            Create order
+          {{/paper-button}}
+        {{/if}}
       {{/paper-card-content}}
 
     {{/paper-card}}
   {{/each}}
 </div>
 
-{{#link-to 'scratch'}}Go to scratch{{/link-to}}
+{{!--
+  {{#link-to 'scratch'}}Go to scratch{{/link-to}}
+ --}}

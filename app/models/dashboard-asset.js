@@ -10,7 +10,6 @@ export default Model.extend({
   currentPrice: attr('number'),
   openOrders: hasMany('order'),
   lastBuyIn: belongsTo('order'),
-  newOrder: belongsTo('order'),
   balance: belongsTo('balance'),
 
   orders: alias('openOrders'),
