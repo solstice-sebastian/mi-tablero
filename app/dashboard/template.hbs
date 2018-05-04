@@ -40,6 +40,9 @@
           }}{{/order-widget}}
         {{/each}}
 
+        {{!-- {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
+            Remove order
+        {{/paper-button}} --}}
         {{#paper-button raised=true click=(action "createOrder" activeAsset)}}
           Create order
         {{/paper-button}}
@@ -48,3 +51,5 @@
     {{/paper-card}}
   {{/each}}
 </div>
+
+{{#link-to 'scratch'}}Go to scratch{{/link-to}}

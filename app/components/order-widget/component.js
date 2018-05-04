@@ -7,6 +7,7 @@ export default Component.extend({
   classNames: ['order-widget'],
 
   order: null,
+  sliderValue: 5,
 
   /**
    * @param {Number} passed from dashboardAsset
@@ -29,6 +30,16 @@ export default Component.extend({
   stopPriceLabel: computed('stopPriceDiff', function() {
     const stopPriceDiff = get(this, 'stopPriceDiff');
     return `Stop limit : ${stopPriceDiff}`;
+  }),
+
+  priceMax: computed(function() {
+    const price = +get(this, 'order.price');
+    return price * 2;
+  }),
+
+  priceMin: computed(function() {
+    const price = +get(this, 'order.price');
+    return Math.floor(price / 2);
   }),
 
   statusClass: computed('order.status', function() {

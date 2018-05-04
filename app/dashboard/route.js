@@ -36,5 +36,11 @@ export default Route.extend({
       const orders = get(dashboardAsset, 'openOrders');
       orders.addObject(newOrder);
     },
+
+    remove(dashboardAsset) {
+      const orders = get(dashboardAsset, 'orders');
+      const newOrder = orders.findBy('isNew', true);
+      orders.removeObject(newOrder);
+    },
   },
 });

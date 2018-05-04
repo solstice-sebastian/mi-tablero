@@ -1,0 +1,6 @@
+{{!-- {{paper-slider min='0' max='255' value = 124 class='md-primary'}}
+
+{{model.value}} --}}
+{{paper-slider class="flex" min=0 max=255 value=model.value onChange=(action (mut model.value))}}
+
+{{#link-to 'dashboard'}}Go to dashboard{{/link-to}}

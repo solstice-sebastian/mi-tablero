@@ -18,14 +18,31 @@
 {{/unless}}
 
 {{paper-input
-  label="Limit price"
-  value=order.price
-  onChange="changeLimitPrice"
+  label = "Limit price"
+  value = order.price
+  onChange = "changeLimitPrice"
 }}
 
 {{paper-input
-  label=stopPriceLabel
-  value=order.stopPrice
-  onChange="changeStopPrice"
+  label = stopPriceLabel
+  value = order.stopPrice
+  onChange = "changeStopPrice"
 }}
 
+{{paper-slider
+  min = priceMin
+  max = priceMax
+  step = '0.00000001'
+  value = order.price
+  onChange = "changeLimitPrice"
+  data-id = "limit-price-slider"
+}}
+
+{{paper-slider
+  min = priceMin
+  max = priceMax
+  step = '0.00000001'
+  value = order.stopPrice
+  onChange = "changeStopPrice"
+  data-id = "stop-price-slider"
+}}

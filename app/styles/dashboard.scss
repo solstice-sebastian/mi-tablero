@@ -1,11 +1,12 @@
 .active-assets {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .md-card {
   flex-grow: 1;
-  width: 30%;
+  width: 45%;
 }
 
 .asset-stat {
