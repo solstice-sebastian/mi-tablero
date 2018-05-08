@@ -2,7 +2,7 @@
 
 'use strict';
 
-require('dotenv').config();
+const dotenv = require('dotenv');
 
 module.exports = function(environment) {
   const ENV = {
@@ -66,9 +66,8 @@ module.exports = function(environment) {
   /**
    * environment variables
    */
-  ENV.VARS = Object.assign({}, process.env, {
-    API_HOST: isMirage ? 'http://localhost:5000' : undefined,
-  });
+  dotenv.config({ path: `.env.${environment}` });
+  ENV.VARS = Object.assign({}, process.env);
 
   /**
    * addons

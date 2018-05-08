@@ -6,7 +6,7 @@ module('Unit | Adapter | dashboard', function(hooks) {
 
   // Replace this with your real tests.
   test('it exists', function(assert) {
-    let adapter = this.owner.lookup('adapter:dashboard');
+    const adapter = this.owner.lookup('adapter:dashboard');
     assert.ok(adapter);
   });
 });
