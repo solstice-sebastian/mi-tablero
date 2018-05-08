@@ -11,11 +11,13 @@
   </span>
 </h2>
 
-{{#unless order.isNew}}
-  <span class="order-stat" data-test="order-status">{{order.status}}</span>
-  <span class="order-stat" data-test="order-type">{{order.type}}</span>
-  <span class="order-stat" data-test="order-side">{{order.side}}</span>
-{{/unless}}
+{{#if order.isNew}}
+  <div class="order-stats">
+    <span class="order-stat" data-test="order-status">{{order.status}}</span>
+    <span class="order-stat" data-test="order-type">{{order.type}}</span>
+    <span class="order-stat" data-test="order-side">{{order.side}}</span>
+  </div>
+{{/if}}
 
 {{paper-input
   label = "Limit price"

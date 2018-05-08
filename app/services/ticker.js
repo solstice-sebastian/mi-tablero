@@ -7,20 +7,18 @@ export default Service.extend({
 
   timer: null,
 
-  async update(timeout = 5000) {
+  async update() {
     const store = get(this, 'store');
     const tickers = await store.findAll('ticker');
-
-    if (timeout) {
-      const timer = later(this, this.update, timeout);
-      set(this, 'timer', timer);
-      return timer;
-    }
     return tickers;
   },
 
-  startPolling(timeout) {
-    this.update(timeout);
+  startPolling(timeout = 5000) {
+    this.update();
+
+    const timer = later(this, this.startPolling, timeout);
+    set(this, 'timer', timer);
+    return timer;
   },
 
   stopPolling() {

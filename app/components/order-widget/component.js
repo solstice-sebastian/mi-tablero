@@ -10,7 +10,7 @@ export default Component.extend({
   sliderValue: 5,
 
   /**
-   * @param {Number} passed from dashboardAsset
+   * @param {Number} currentPrice passed from dashboardAsset
    */
   currentPrice: null,
 
