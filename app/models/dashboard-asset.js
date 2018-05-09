@@ -20,4 +20,9 @@ export default Model.extend({
     const buyInPrice = get(this, 'lastBuyIn.price');
     return getPercentDiff(buyInPrice, currentPrice);
   }),
+
+  uiCurrentPrice: computed('currentPrice', function() {
+    const currentPrice = get(this, 'currentPrice');
+    return currentPrice.toFixed(8);
+  }),
 });

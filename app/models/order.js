@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-// import { empty } from '@ember/object/computed';
+import { computed, get } from '@ember/object';
 
 const { attr, Model } = DS;
 
@@ -19,4 +19,9 @@ export default Model.extend({
   time: attr('number'),
   isWorking: attr('boolean'),
   profitLoss: attr('number'),
+
+  isOpen: computed('status', function() {
+    const status = get(this, 'status');
+    return status === 'NEW' || status === 'PARTIALLY_FILLED';
+  }),
 });

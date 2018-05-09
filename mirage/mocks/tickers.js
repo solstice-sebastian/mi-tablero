@@ -1541,14 +1541,7 @@ const tickers = {
       symbol: 'LOOMBNB',
       price: 0.0486,
     },
-  ].map((ticker) => {
-    if (Math.random() > 0.5) {
-      ticker.price *= 0.099;
-    } else {
-      ticker.price *= 1.001;
-    }
-    return ticker;
-  }),
+  ],
 };
 
 export default tickers;
