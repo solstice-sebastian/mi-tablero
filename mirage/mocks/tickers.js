@@ -1,5 +1,7 @@
 /* eslint-disable no-param-reassign */
-const tickers = {
+const modByPercent = (price, mod, digits = 10) => +(price * (1 + mod)).toFixed(digits);
+
+const payload = {
   tickers: [
     {
       id: 0,
@@ -1544,4 +1546,21 @@ const tickers = {
   ],
 };
 
-export default tickers;
+const fetch = () => {
+  payload.tickers = payload.tickers.map((ticker) => {
+    let newPrice;
+    if (Math.random() > 0.5) {
+      newPrice = modByPercent(ticker.price, 0.025); // increase 0.25%
+    } else {
+      newPrice = modByPercent(ticker.price, -0.025); // decrease 0.25%
+    }
+    return {
+      id: ticker.symbol,
+      symbol: ticker.symbol,
+      price: newPrice,
+    };
+  });
+  return payload;
+};
+
+export default fetch;

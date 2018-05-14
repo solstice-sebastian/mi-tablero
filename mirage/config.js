@@ -1,9 +1,10 @@
 import dashboardMock from './mocks/dashboard';
-import tickers from './mocks/tickers';
+import fetch from './mocks/tickers';
+import ENV from '../config/environment';
 
 export default function() {
-  this.urlPrefix = 'http://localhost:4200';
+  this.urlPrefix = ENV.VARS.API_HOST;
   this.namespace = '';
   this.get('/dashboards', () => dashboardMock);
-  this.get('/tickers', () => tickers);
+  this.get('/tickers', () => fetch());
 }
