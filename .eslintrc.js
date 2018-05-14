@@ -38,6 +38,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'import/no-unresolved': 0,
     'import/no-extraneous-dependencies': 0,
+    'arrow-body-style': 'off'
   },
   overrides: [
     // node files

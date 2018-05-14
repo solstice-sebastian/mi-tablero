@@ -6,9 +6,12 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     assetsHash.forEach((dashboardAsset) => {
       let openOrders = [];
       if (dashboardAsset.openOrders.length > 0) {
-        openOrders = dashboardAsset.openOrders.map((order) =>
-          this.store.createRecord('order', Object.assign({}, order, { id: order.orderId }))
-        );
+        openOrders = dashboardAsset.openOrders
+          .filter((order) => {
+            // filter out open orders that are already the 'lastBuyIn'
+            return dashboardAsset.lastBuyIn.orderId !== order.orderId;
+          })
+          .map((order) => this.store.createRecord('order', Object.assign({}, order, { id: null })));
       }
 
       const balance = this.store.createRecord('balance');
@@ -25,7 +28,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
           balance,
           lastBuyIn: this.store.createRecord(
             'order',
-            Object.assign({}, dashboardAsset.lastBuyIn, { id: dashboardAsset.lastBuyIn.orderId })
+            Object.assign({}, dashboardAsset.lastBuyIn, { id: null })
           ),
         })
       );

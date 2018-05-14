@@ -41,7 +41,9 @@ export default Route.extend({
       const ticker = tickers.findBy('symbol', symbol);
       if (isNone(ticker) === false) {
         const currentPrice = get(ticker, 'price');
-        set(asset, 'currentPrice', currentPrice);
+        if (currentPrice !== get(asset, 'currentPrice')) {
+          set(asset, 'currentPrice', currentPrice);
+        }
       }
     });
   },

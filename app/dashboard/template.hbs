@@ -44,7 +44,7 @@
           }}{{/order-widget}}
         {{/each}}
 
-        {{#if activeAsset.hasNewOrder}}
+        {{#if activeAsset.hasOpenOrders}}
           {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
             Remove order
           {{/paper-button}}
