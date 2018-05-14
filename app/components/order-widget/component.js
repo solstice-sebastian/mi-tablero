@@ -34,12 +34,22 @@ export default Component.extend({
 
   priceMax: computed(function() {
     const price = +get(this, 'order.price');
-    return price * 2;
+    return price * 1.25;
   }),
 
   priceMin: computed(function() {
     const price = +get(this, 'order.price');
-    return Math.max(Math.floor(price / 2), 0.000001);
+    return Math.max(price * 0.75, 0.000001);
+  }),
+
+  stopPriceMin: computed('order.price', function() {
+    const price = +get(this, 'order.price');
+    return price * 0.75;
+  }),
+
+  stopPriceMax: computed('order.price', function() {
+    const price = get(this, 'order.price');
+    return price * 1.25;
   }),
 
   statusClass: computed('order.status', function() {
