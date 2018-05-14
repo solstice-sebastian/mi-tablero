@@ -8,6 +8,7 @@ export default Component.extend({
 
   order: null,
   sliderValue: 5,
+  stepValue: 0.00000001,
 
   /**
    * @param {Number} currentPrice passed from dashboardAsset
@@ -58,6 +59,16 @@ export default Component.extend({
   }),
 
   actions: {
+    decValue(value, actionName) {
+      const stepValue = get(this, 'stepValue');
+      this.send(actionName, value - stepValue);
+    },
+
+    incValue(value, actionName) {
+      const stepValue = get(this, 'stepValue');
+      this.send(actionName, value + stepValue);
+    },
+
     changeLimitPrice(value) {
       set(this, 'order.price', value);
     },

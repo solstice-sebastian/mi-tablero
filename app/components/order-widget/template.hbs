@@ -31,20 +31,52 @@
   onChange = "changeStopPrice"
 }}
 
-{{paper-slider
-  min = priceMin
-  max = priceMax
-  step = '0.00000001'
-  value = order.price
-  onChange = "changeLimitPrice"
-  data-id = "limit-price-slider"
-}}
+<div class="control-row" data-id="limit-price">
+  {{#paper-button
+    raised=true
+    mini=true
+    onClick=(action 'decValue' order.price 'changeLimitPrice')
+  }}
+    -
+  {{/paper-button}}
+  {{paper-slider
+    min = priceMin
+    max = priceMax
+    step = stepValue
+    value = order.price
+    onChange = "changeLimitPrice"
+    data-id = "limit-price-slider"
+  }}
+  {{#paper-button
+    raised=true
+    mini=true
+    onClick=(action 'incValue' order.price 'changeLimitPrice')
+  }}
+    +
+  {{/paper-button}}
+</div>
 
-{{paper-slider
-  min = stopPriceMin
-  max = stopPriceMax
-  step = '0.00000001'
-  value = order.stopPrice
-  onChange = "changeStopPrice"
-  data-id = "stop-price-slider"
-}}
+<div class="control-row" data-id="stop-price">
+  {{#paper-button
+    raised=true
+    mini=true
+    onClick=(action 'decValue' order.stopPrice 'changeStopPrice')
+  }}
+    -
+  {{/paper-button}}
+  {{paper-slider
+    min = stopPriceMin
+    max = stopPriceMax
+    step = stepValue
+    value = order.stopPrice
+    onChange = "changeStopPrice"
+    data-id = "stop-price-slider"
+  }}
+  {{#paper-button
+    raised=true
+    mini=true
+    onClick=(action 'incValue' order.stopPrice 'changeStopPrice')
+  }}
+    +
+  {{/paper-button}}
+</div>
