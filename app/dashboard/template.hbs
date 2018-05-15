@@ -1,62 +1,72 @@
 <div class="active-assets">
-  {{#each model as |activeAsset|}}
-    {{#paper-card class="md-card"}}
+  {{#if isEmpty}}
+    {{#paper-card class="md-card md-card--is-empty"}}
       {{#paper-card-content}}
-        <h2>{{activeAsset.id}} :
-          <span class="asset-stat__value">
-            {{pretty-percent value=activeAsset.currentProfitLoss isColored=true}}
-          </span>
-        </h2>
-
-        <div class="active-asset" layout="row" layout-align="start center" data-id="current-price">
-          <h3>
-            <label class="asset-stat__label">
-              Current price:
-            </label>
-            <span class="asset-stat__value current-price">
-              {{activeAsset.currentPrice}}
-            </span>
-          </h3>
-        </div>
-
-        <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
-          <small>
-            <label class="asset-stat__label">
-              Last buy in:
-            </label>
-            <span class="asset-stat__value">
-              {{activeAsset.lastBuyIn.price}}
-            </span>
-          </small>
-        </div>
+        No active assets...
       {{/paper-card-content}}
-
-      {{!-- orders --}}
-
-      {{#paper-card-content}}
-        {{#each activeAsset.orders as |order|}}
-
-          {{paper-divider}}
-
-          {{#order-widget
-            order = order
-            currentPrice = activeAsset.currentPrice
-          }}{{/order-widget}}
-        {{/each}}
-
-        {{#if activeAsset.hasOpenOrders}}
-          {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
-            Remove order
-          {{/paper-button}}
-        {{else}}
-          {{#paper-button raised=true click=(action "createOrder" activeAsset)}}
-            Create order
-          {{/paper-button}}
-        {{/if}}
-      {{/paper-card-content}}
-
     {{/paper-card}}
-  {{/each}}
+  {{else}}
+    {{#each model as |activeAsset|}}
+      {{#paper-card class="md-card"}}
+
+        {{!-- asset info --}}
+        {{#paper-card-content}}
+          <h2>{{activeAsset.id}} :
+            <span class="asset-stat__value">
+              {{pretty-percent value=activeAsset.currentProfitLoss isColored=true}}
+            </span>
+          </h2>
+
+          <div class="active-asset" layout="row" layout-align="start center" data-id="current-price">
+            <h3>
+              <label class="asset-stat__label">
+                Current price:
+              </label>
+              <span class="asset-stat__value current-price">
+                {{activeAsset.currentPrice}}
+              </span>
+            </h3>
+          </div>
+
+          <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
+            <small>
+              <label class="asset-stat__label">
+                Last buy in:
+              </label>
+              <span class="asset-stat__value">
+                {{activeAsset.lastBuyIn.price}}
+              </span>
+            </small>
+          </div>
+        {{/paper-card-content}}
+
+        {{!-- orders --}}
+
+        {{#paper-card-content}}
+          {{#each activeAsset.orders as |order|}}
+
+            {{paper-divider}}
+
+            {{#order-widget
+              order = order
+              currentPrice = activeAsset.currentPrice
+            }}{{/order-widget}}
+          {{/each}}
+
+          {{#if activeAsset.hasOpenOrders}}
+            {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
+              Remove order
+            {{/paper-button}}
+          {{else}}
+            {{#paper-button raised=true click=(action "createOrder" activeAsset)}}
+              Create order
+            {{/paper-button}}
+          {{/if}}
+        {{/paper-card-content}}
+
+      {{/paper-card}}
+    {{/each}}
+  {{/if}}
 </div>
 
 {{!--
