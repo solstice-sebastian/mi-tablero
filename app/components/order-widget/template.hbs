@@ -5,10 +5,12 @@
 {{!-- qty --}} {{!-- slider for qty --}} {{!-- % for base value --}}
 {{!-- base toggle? --}}
 
-<h2>{{order.symbol}} :
+<h2 class="asset-symbol">{{order.symbol}} :
   <span class="asset-stat__value">
     {{pretty-percent value=profitLoss isColored=true}}
   </span>
+  <br>
+  <small>(from currentPrice)</small>
 </h2>
 
 {{#if order.isOpen}}
