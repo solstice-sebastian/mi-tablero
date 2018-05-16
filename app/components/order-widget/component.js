@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed, get, set } from '@ember/object';
+import { isNone } from '@ember/utils';
 import getPercentDiff from '../../utils/get-percent-diff';
 import calcPrettyPercent from '../../utils/calc-pretty-percent';
 
@@ -22,10 +23,14 @@ export default Component.extend({
   }),
 
   stopPriceDiff: computed('order.{price,stopPrice}', function() {
-    const { price, stopPrice } = get(this, 'order');
-    const diff = getPercentDiff(price, stopPrice);
-    const prettyPercent = calcPrettyPercent(diff);
-    return prettyPercent;
+    const order = get(this, 'order');
+    if (isNone(order) === false) {
+      const { price, stopPrice } = get(this, 'order');
+      const diff = getPercentDiff(price, stopPrice);
+      const prettyPercent = calcPrettyPercent(diff);
+      return prettyPercent;
+    }
+    return Number.NaN;
   }),
 
   stopPriceLabel: computed('stopPriceDiff', function() {
