@@ -18,7 +18,7 @@ export default Model.extend({
   icebergQty: attr('number'),
   time: attr('number'),
   isWorking: attr('boolean'),
-  profitLoss: attr('number'),
+  profitLoss: attr('number'), // initially provided and/or calculated
 
   isOpen: computed('status', function() {
     const status = get(this, 'status');
