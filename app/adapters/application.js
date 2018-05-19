@@ -8,7 +8,10 @@ export default DS.RESTAdapter.extend({
     return get(this, 'envVars.API_HOST');
   }),
 
-  // headers: Ember.computed(() => {
-
-  // })
+  headers: computed(() => {
+    const allowOrigin = get(this, 'envVars.ALLOW_ORIGIN');
+    return {
+      'Access-Control-Allow-Origin': allowOrigin,
+    };
+  }),
 });
