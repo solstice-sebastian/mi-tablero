@@ -25,4 +25,11 @@ export default Model.extend({
     const currentPrice = get(this, 'currentPrice');
     return currentPrice.toFixed(8);
   }),
+
+  base: computed('lastBuyIn', 'asset', function() {
+    const lastBuyIn = get(this, 'lastBuyIn');
+    const symbol = get(lastBuyIn, 'symbol');
+    const asset = get(this, 'asset');
+    return symbol.replace(asset, '');
+  }),
 });

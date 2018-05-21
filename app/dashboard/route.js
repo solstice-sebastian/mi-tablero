@@ -33,10 +33,9 @@ export default Route.extend({
 
   onTickerUpdate(tickers) {
     const store = get(this, 'store');
-    const base = get(this, 'base');
     const assets = store.peekAll('dashboard-asset');
     assets.forEach((asset) => {
-      const symbol = `${get(asset, 'asset')}${base}`;
+      const symbol = `${get(asset, 'asset')}${get(asset, 'base')}`;
       // find ticker
       const ticker = tickers.findBy('symbol', symbol);
       if (isNone(ticker) === false) {
