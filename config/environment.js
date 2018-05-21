@@ -25,15 +25,6 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-
-    contentSecurityPolicy: {
-      'default-src': "'none'",
-      'script-src': "'self'",
-      'font-src': "'self' http://fonts.gstatic.com",
-      'connect-src': ["'self'", `'${environment ? environment.ALLOW_ORIGIN : ''}'`],
-      'img-src': "'self' data:",
-      'media-src': "'self'",
-    },
   };
 
   if (environment === 'development') {
@@ -68,6 +59,18 @@ module.exports = function(environment) {
    */
   dotenv.config({ path: `.env.${environment}` });
   ENV.VARS = Object.assign({}, process.env);
+
+  /**
+   * Content Security Policy
+   */
+  ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'script-src': "'self'",
+    'font-src': "'self' http://fonts.gstatic.com",
+    'connect-src': ["'self'", `'${environment ? environment.ALLOW_ORIGIN : ''}'`],
+    'img-src': "'self' data:",
+    'media-src': "'self'",
+  };
 
   /**
    * addons
