@@ -1,5 +1,6 @@
 import { computed, get } from '@ember/object';
 import { gt, alias } from '@ember/object/computed';
+import { isNone } from '@ember/utils';
 import DS from 'ember-data';
 import getPercentDiff from '../utils/get-percent-diff';
 
@@ -29,7 +30,10 @@ export default Model.extend({
   base: computed('lastBuyIn', 'asset', function() {
     const lastBuyIn = get(this, 'lastBuyIn');
     const symbol = get(lastBuyIn, 'symbol');
-    const asset = get(this, 'asset');
-    return symbol.replace(asset, '');
+    if (isNone(symbol) === false) {
+      const asset = get(this, 'asset');
+      return symbol.replace(asset, '');
+    }
+    return '';
   }),
 });

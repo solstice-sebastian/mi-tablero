@@ -63,14 +63,21 @@ module.exports = function(environment) {
   /**
    * Content Security Policy
    */
-  ENV.contentSecurityPolicy = {
-    'default-src': "'none'",
-    'script-src': "'self'",
-    'font-src': "'self' http://fonts.gstatic.com",
-    'connect-src': ["'self'", `'${environment ? environment.ALLOW_ORIGIN : ''}'`],
-    'img-src': "'self' data:",
-    'media-src': "'self'",
-  };
+  if (environment !== undefined && isMirage === false) {
+    const connectSrc = [`'self'`];
+    if (environment.ALLOW_ORIGIN !== undefined) {
+      connectSrc.push(`${environment.ALLOW_ORIGIN}`);
+    }
+    ENV.contentSecurityPolicy = {
+      'default-src': "'none'",
+      'script-src': "'self'",
+      'font-src': "'self' http://fonts.gstatic.com",
+      'connect-src': connectSrc,
+      'img-src': "'self' data:",
+      'media-src': "'self'",
+      'style-src': "'self'",
+    };
+  }
 
   /**
    * addons
