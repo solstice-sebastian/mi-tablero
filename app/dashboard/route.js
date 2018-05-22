@@ -14,11 +14,7 @@ export default Route.extend({
       set(this, 'base', base);
     }
 
-    // return this.store.findAll('dashboard').then(() => this.store.peekAll('dashboard-asset'));
-    return new Promise((res, rej) => {
-      const error = new Error('oops... something is broken');
-      rej(error);
-    });
+    return this.store.findAll('dashboard').then(() => this.store.peekAll('dashboard-asset'));
   },
 
   setupController(controller, model) {
