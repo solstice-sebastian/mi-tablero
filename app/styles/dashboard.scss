@@ -23,3 +23,14 @@
     }
   }
 }
+
+.dashboard-loading-container {
+  display: flex;
+  flex-direction: column;
+  padding: 40%;
+  align-items: center;
+
+  div {
+    flex: 1;
+  }
+}
