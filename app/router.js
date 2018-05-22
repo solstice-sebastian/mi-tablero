@@ -10,6 +10,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('dashboard');
   this.route('scratch');
+  this.route('dashboard.error');
 });
 
 export default Router;

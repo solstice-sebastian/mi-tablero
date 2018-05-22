@@ -1,0 +1,11 @@
+{{#paper-card class="md-card md-card--is-empty"}}
+  {{#paper-card-content}}
+      Oh noes! {{error.message}}
+
+      <ul>
+        {{#each stackLines as |line|}}
+          <li>{{line}}</li>
+        {{/each}}
+      </ul>
+  {{/paper-card-content}}
+{{/paper-card}}
