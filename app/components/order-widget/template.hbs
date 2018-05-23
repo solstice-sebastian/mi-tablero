@@ -21,17 +21,19 @@
   </div>
 {{/if}}
 
-{{paper-input
-  label = "Limit price"
-  value = order.price
-  onChange = "changeLimitPrice"
-}}
+<div class="order-inputs">
+  {{paper-input
+    label = "Limit price"
+    value = order.price
+    onChange = "changeLimitPrice"
+  }}
 
-{{paper-input
-  label = stopPriceLabel
-  value = order.stopPrice
-  onChange = "changeStopPrice"
-}}
+  {{paper-input
+    label = stopPriceLabel
+    value = order.stopPrice
+    onChange = "changeStopPrice"
+  }}
+</div>
 
 <div class="control-row" data-id="limit-price">
   {{#paper-button

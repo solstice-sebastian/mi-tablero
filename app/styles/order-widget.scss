@@ -4,10 +4,21 @@
   md-slider {
     flex-grow: 1;
   }
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 }
 
 .asset-symbol {
   small {
     font-size: 0.8em;
+  }
+}
+
+.order-inputs {
+  md-input-container {
+    width: 100%;
+    display: block;
   }
 }
