@@ -83,11 +83,19 @@ export default Component.extend({
     },
 
     changeLimitPrice(value) {
-      set(this, 'order.price', +value.toFixed(8));
+      if (typeof +value.toFixed === 'function') {
+        set(this, 'order.price', +value.toFixed(8));
+      } else {
+        set(this, 'order.price', value);
+      }
     },
 
     changeStopPrice(value) {
-      set(this, 'order.stopPrice', +value.toFixed(8));
+      if (typeof +value.toFixed === 'function') {
+        set(this, 'order.stopPrice', +value.toFixed(8));
+      } else {
+        set(this, 'order.stopPrice', value);
+      }
     },
 
     createNotification(order) {
