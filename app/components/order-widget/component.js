@@ -16,10 +16,16 @@ export default Component.extend({
    */
   currentPrice: null,
 
-  profitLoss: computed('currentPrice', 'order.price', function() {
+  orderProfitLoss: computed('currentPrice', 'order.price', function() {
     const price = get(this, 'order.price');
     const currentPrice = get(this, 'currentPrice');
     return getPercentDiff(currentPrice, price);
+  }),
+
+  totalProfitLoss: computed('currentPrice', 'lastBuyIn', function() {
+    const lastBuyInPrice = get(this, 'lastBuyIn.price');
+    const currentPrice = get(this, 'currentPrice');
+    return getPercentDiff(currentPrice, lastBuyInPrice);
   }),
 
   stopPriceDiff: computed('order.{price,stopPrice}', function() {

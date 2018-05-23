@@ -5,13 +5,35 @@
 {{!-- qty --}} {{!-- slider for qty --}} {{!-- % for base value --}}
 {{!-- base toggle? --}}
 
-<h2 class="asset-symbol">{{order.symbol}} :
-  <span class="asset-stat__value">
-    {{pretty-percent value=profitLoss isColored=true}}
-  </span>
-  <br>
-  <small>(from currentPrice)</small>
-</h2>
+
+<h2 class="asset-symbol">{{order.symbol}} :</h2>
+<div class="pl-table">
+  <div class="pl-row">
+    <div class="pl-column">
+      <span class="asset-stat__value" data-id="order-profit-loss">
+        {{pretty-percent value=orderProfitLoss isColored=true}}
+      </span>
+    </div>
+    <div class="pl-column">
+      <span class="asset-stat__value" data-id="total-profit-loss">
+        {{pretty-percent value=totalProfitLoss isColored=true}}
+      </span>
+    </div>
+  </div>
+
+  <div class="pl-row">
+    <div class="pl-column">
+      <span class="asset-stat__value" data-id="order-profit-loss-label">
+        <small>current</small>
+      </span>
+    </div>
+    <div class="pl-column">
+      <span class="asset-stat__value" data-id="total-profit-loss-label">
+        <small>total</small>
+      </span>
+    </div>
+  </div>
+</div>
 
 {{#if order.isOpen}}
   <div class="order-stats">
