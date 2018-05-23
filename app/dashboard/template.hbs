@@ -55,10 +55,6 @@
           {{/each}}
 
           {{#if activeAsset.hasOpenOrders}}
-            {{#paper-button raised=true click=(action "createNotification" order)}}
-              Set notification
-            {{/paper-button}}
-
             {{#paper-button raised=true click=(action "removeOrder" activeAsset)}}
               Remove order
             {{/paper-button}}

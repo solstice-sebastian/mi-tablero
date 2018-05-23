@@ -21,13 +21,5 @@ export default Controller.extend({
       set(activeAsset, 'hasNewOrder', false);
       this.send('remove', activeAsset);
     },
-
-    createNotification(order) {
-      const price = get(order, 'price');
-      const symbol = get(order, 'symbol');
-      const store = get(this, 'store');
-      const notification = store.createRecord('notification', { symbol, price });
-      return notification.save();
-    },
   },
 });

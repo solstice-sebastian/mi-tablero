@@ -87,5 +87,13 @@ export default Component.extend({
     changeStopPrice(value) {
       set(this, 'order.stopPrice', +value.toFixed(8));
     },
+
+    createNotification(order) {
+      const price = get(order, 'price');
+      const symbol = get(order, 'symbol');
+      const store = get(this, 'store');
+      const notification = store.createRecord('notification', { symbol, price });
+      return notification.save();
+    },
   },
 });
