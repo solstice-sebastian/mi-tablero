@@ -64,7 +64,7 @@ module.exports = function(environment) {
    * Content Security Policy
    */
   const connectSrc = [`'self'`];
-  if (environment !== undefined && isMirage === false) {
+  if (environment !== undefined && isProd === false) {
     if (ENV.VARS.ALLOW_ORIGIN !== undefined) {
       connectSrc.push(`${ENV.VARS.ALLOW_ORIGIN}`);
     }

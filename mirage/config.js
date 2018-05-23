@@ -8,4 +8,5 @@ export default function() {
   this.get('/dashboards', () => dashboardMock);
   this.get('/tickers', () => fetch());
   this.post('/notifications');
+  // this.passthrough('/notifications');
 }
