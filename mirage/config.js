@@ -7,7 +7,5 @@ export default function() {
   this.namespace = '';
   this.get('/dashboards', () => dashboardMock);
   this.get('/tickers', () => fetch());
-  this.post('/notification', (...args) => {
-    console.log(`args:`, args);
-  });
+  this.post('/notifications');
 }

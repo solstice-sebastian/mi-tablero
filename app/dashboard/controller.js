@@ -1,10 +1,8 @@
 import Controller from '@ember/controller';
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 import { empty } from '@ember/object/computed';
-import { inject } from '@ember/service';
 
 export default Controller.extend({
-  store: inject(),
   queryParams: ['base'],
 
   hasNewOrder: false,

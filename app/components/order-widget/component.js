@@ -1,10 +1,12 @@
 import Component from '@ember/component';
 import { computed, get, set } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { inject } from '@ember/service';
 import getPercentDiff from '../../utils/get-percent-diff';
 import calcPrettyPercent from '../../utils/calc-pretty-percent';
 
 export default Component.extend({
+  store: inject(),
   classNames: ['order-widget'],
 
   order: null,
