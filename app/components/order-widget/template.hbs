@@ -30,7 +30,7 @@
 {{#if order.isOpen}}
   <div class="order-stats">
     <span class="order-stat" data-test="order-status">{{order.status}}</span>
-    <span class="order-stat" data-test="order-type">{{order.type}}</span>
+    {{!-- <span class="order-stat" data-test="order-type">{{order.type}}</span> --}}
     <span class="order-stat" data-test="order-side">{{order.side}}</span>
     <span class="notification-button">
       {{#paper-button raised=true click=(action "createNotification" order)}}
