@@ -29,10 +29,4 @@ export default Service.extend({
   stopPolling() {
     set(this, 'timer', null);
   },
-
-  createNotification({ symbol, price }) {
-    const store = get(this, 'store');
-    const notification = store.createRecord('notification', { symbol, price });
-    return notification.save();
-  },
 });

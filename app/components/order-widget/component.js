@@ -1,12 +1,10 @@
 import Component from '@ember/component';
 import { computed, get, set } from '@ember/object';
 import { isNone } from '@ember/utils';
-import { inject } from '@ember/service';
 import getPercentDiff from '../../utils/get-percent-diff';
 import calcPrettyPercent from '../../utils/calc-pretty-percent';
 
 export default Component.extend({
-  tickerService: inject('ticker'),
   classNames: ['order-widget'],
 
   order: null,
@@ -73,27 +71,21 @@ export default Component.extend({
 
   actions: {
     decValue(value, actionName) {
-      const stepValue = get(this, 'stepValue');
-      this.send(actionName, value - stepValue);
+      const stepValue = +get(this, 'stepValue');
+      this.send(actionName, +value - stepValue);
     },
 
     incValue(value, actionName) {
       const stepValue = get(this, 'stepValue');
-      this.send(actionName, value + stepValue);
+      this.send(actionName, +value + stepValue);
     },
 
     changeLimitPrice(value) {
-      set(this, 'order.price', value);
+      set(this, 'order.price', +value.toFixed(8));
     },
 
     changeStopPrice(value) {
-      set(this, 'order.stopPrice', value);
-    },
-
-    createNotification(order) {
-      const price = get(order, 'price');
-      const symbol = get(order, 'symbol');
-      get(this, 'tickerService').createNotification({ price, symbol });
+      set(this, 'order.stopPrice', +value.toFixed(8));
     },
   },
 });
