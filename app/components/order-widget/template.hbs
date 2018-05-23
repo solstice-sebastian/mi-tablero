@@ -6,11 +6,13 @@
         {{pretty-percent value=orderProfitLoss isColored=true}}
       </span>
     </div>
-    <div class="pl-column">
-      <span class="asset-stat__value" data-id="total-profit-loss">
-        {{pretty-percent value=totalProfitLoss isColored=true}}
-      </span>
-    </div>
+    {{#if hasBalance}}
+      <div class="pl-column">
+        <span class="asset-stat__value" data-id="total-profit-loss">
+          {{pretty-percent value=totalProfitLoss isColored=true}}
+        </span>
+      </div>
+    {{/if}}
   </div>
 
   <div class="pl-row">
@@ -19,11 +21,13 @@
         <small>current</small>
       </span>
     </div>
-    <div class="pl-column">
-      <span class="asset-stat__value" data-id="total-profit-loss-label">
-        <small>total</small>
-      </span>
-    </div>
+    {{#if hasBalance}}
+      <div class="pl-column">
+        <span class="asset-stat__value" data-id="total-profit-loss-label">
+          <small>total</small>
+        </span>
+      </div>
+    {{/if}}
   </div>
 </div>
 

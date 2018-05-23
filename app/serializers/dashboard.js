@@ -7,10 +7,10 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
       let openOrders = [];
       if (dashboardAsset.openOrders.length > 0) {
         openOrders = dashboardAsset.openOrders
-          .filter((order) => {
-            // filter out open orders that are already the 'lastBuyIn'
-            return dashboardAsset.lastBuyIn.orderId !== order.orderId;
-          })
+          // .filter((order) => {
+          //   // filter out open orders that are already the 'lastBuyIn'
+          //   return dashboardAsset.lastBuyIn.orderId !== order.orderId;
+          // })
           .map((order) => this.store.createRecord('order', Object.assign({}, order, { id: null })));
       }
 

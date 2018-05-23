@@ -12,9 +12,13 @@
         {{!-- asset info --}}
         {{#paper-card-content}}
           <h2>{{activeAsset.id}} :
-            <span class="asset-stat__value">
-              {{pretty-percent value=activeAsset.currentProfitLoss isColored=true}}
-            </span>
+            {{#if activeAsset.balance.isEmpty}}
+              N/A
+            {{else}}
+              <span class="asset-stat__value">
+                {{pretty-percent value=activeAsset.currentProfitLoss isColored=true}}
+              </span>
+            {{/if}}
           </h2>
 
           <div class="active-asset" layout="row" layout-align="start center" data-id="current-price">
@@ -28,22 +32,32 @@
             </h3>
           </div>
 
-          <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
-            <small>
-              <label class="asset-stat__label">
-                Last buy in:
-              </label>
-              <span class="asset-stat__value">
-                {{activeAsset.lastBuyIn.price}}
-              </span>
-            </small>
-          </div>
+          {{#if activeAsset.balance.isEmpty}}
+            <div class="active-asset" layout="row" layout-align="start center" data-id="empty-balance">
+              <small>
+                <label class="asset-stat__label">
+                  Empty balance...
+                </label>
+              </small>
+            </div>
+          {{else}}
+            <div class="active-asset" layout="row" layout-align="start center" data-id="last-buy-in">
+              <small>
+                <label class="asset-stat__label">
+                  Last buy in:
+                </label>
+                <span class="asset-stat__value">
+                  {{activeAsset.lastBuyIn.price}}
+                </span>
+              </small>
+            </div>
+          {{/if}}
         {{/paper-card-content}}
 
         {{!-- orders --}}
 
         {{#paper-card-content}}
-          {{#each activeAsset.orders as |order|}}
+          {{#each activeAsset.openOrders as |order|}}
 
             {{paper-divider}}
 
@@ -51,6 +65,7 @@
               order = order
               lastBuyIn = activeAsset.lastBuyIn
               currentPrice = activeAsset.currentPrice
+              hasBalance = activeAsset.hasBalance
             }}{{/order-widget}}
           {{/each}}
 

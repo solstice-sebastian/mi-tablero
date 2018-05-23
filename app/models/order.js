@@ -22,6 +22,6 @@ export default Model.extend({
 
   isOpen: computed('status', function() {
     const status = get(this, 'status');
-    return status === 'NEW' || status === 'PARTIALLY_FILLED';
+    return status === 'NEW' || status === 'PARTIALLY_FILLED' || status === 'active';
   }),
 });
