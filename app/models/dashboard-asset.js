@@ -1,6 +1,7 @@
-import { computed, get } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import { gt, alias, not } from '@ember/object/computed';
 import { isNone } from '@ember/utils';
+import { later } from '@ember/runloop';
 import DS from 'ember-data';
 import getPercentDiff from '../utils/get-percent-diff';
 
@@ -13,6 +14,7 @@ export default Model.extend({
   lastBuyIn: belongsTo('order'),
   balance: belongsTo('balance'),
 
+  isUpdatingPrice: false,
   orders: alias('openOrders'),
   isPositive: gt('currentProfitLoss', 0.0001),
   hasOpenOrders: gt('openOrders.length', 0),
@@ -24,8 +26,14 @@ export default Model.extend({
   }),
 
   uiCurrentPrice: computed('currentPrice', function() {
-    const currentPrice = get(this, 'currentPrice');
-    return currentPrice.toFixed(8);
+    const currentPrice = +get(this, 'currentPrice');
+    if (typeof currentPrice.toFixed === 'function') {
+      if (currentPrice > 1) {
+        return currentPrice.toFixed(2);
+      }
+      return currentPrice.toFixed(8);
+    }
+    return currentPrice;
   }),
 
   base: computed('lastBuyIn', 'asset', function() {
@@ -37,4 +45,12 @@ export default Model.extend({
     }
     return '';
   }),
+
+  updatePrice(currentPrice) {
+    set(this, 'isUpdatingPrice', true);
+    set(this, 'currentPrice', currentPrice);
+    later(() => {
+      set(this, 'isUpdatingPrice', false);
+    }, 1000);
+  },
 });

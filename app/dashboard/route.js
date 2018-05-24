@@ -42,7 +42,7 @@ export default Route.extend({
       if (isNone(ticker) === false) {
         const currentPrice = get(ticker, 'price');
         if (currentPrice !== get(asset, 'currentPrice')) {
-          set(asset, 'currentPrice', currentPrice);
+          asset.updatePrice(currentPrice);
         }
       }
     });

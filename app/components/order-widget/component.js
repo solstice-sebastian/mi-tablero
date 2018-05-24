@@ -24,10 +24,10 @@ export default Component.extend({
     return getPercentDiff(currentPrice, price);
   }),
 
-  totalProfitLoss: computed('currentPrice', 'lastBuyIn', function() {
+  totalProfitLoss: computed('lastBuyIn', 'order.price', function() {
     const lastBuyInPrice = get(this, 'lastBuyIn.price');
-    const currentPrice = get(this, 'currentPrice');
-    return getPercentDiff(currentPrice, lastBuyInPrice);
+    const orderPrice = get(this, 'order.price');
+    return getPercentDiff(lastBuyInPrice, orderPrice);
   }),
 
   stopPriceDiff: computed('order.{price,stopPrice}', function() {

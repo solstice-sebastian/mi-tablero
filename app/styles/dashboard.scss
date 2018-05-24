@@ -4,9 +4,17 @@
   justify-content: space-around;
 }
 
+.current-price {
+  background-color: white;
+  transition: background-color 400ms ease;
+}
+
+.current-price[is-updating] {
+  background-color: rgba(128, 0, 255, 0.386);
+}
+
 .md-card {
   flex-grow: 1;
-  // width: 45%;
   min-width: 350px;
 }
 

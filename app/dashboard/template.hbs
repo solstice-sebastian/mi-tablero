@@ -26,8 +26,8 @@
               <label class="asset-stat__label">
                 Current price:
               </label>
-              <span class="asset-stat__value current-price">
-                {{activeAsset.currentPrice}}
+              <span class="asset-stat__value current-price" is-updating={{activeAsset.isUpdatingPrice}}>
+                {{activeAsset.uiCurrentPrice}}
               </span>
             </h3>
           </div>
