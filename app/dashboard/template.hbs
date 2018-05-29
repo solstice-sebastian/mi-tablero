@@ -51,6 +51,26 @@
                 </span>
               </small>
             </div>
+            <div class="active-asset" layout="row" layout-align="start center" data-id="current-qty">
+              <small>
+                <label class="asset-stat__label">
+                  Asset Qty:
+                </label>
+                <span class="asset-stat__value">
+                  {{activeAsset.balance.qty}}
+                </span>
+              </small>
+            </div>
+            <div class="active-asset" layout="row" layout-align="start center" data-id="base-value">
+              <small>
+                <label class="asset-stat__label">
+                  Base Value:
+                </label>
+                <span class="asset-stat__value">
+                  {{activeAsset.baseValue}}
+                </span>
+              </small>
+            </div>
           {{/if}}
         {{/paper-card-content}}
 

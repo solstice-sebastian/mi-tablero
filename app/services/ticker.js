@@ -29,4 +29,16 @@ export default Service.extend({
   stopPolling() {
     set(this, 'timer', null);
   },
+
+  getBaseValue(asset, qty) {
+    const store = get(this, 'store');
+    const tickers = store.peekAll('ticker');
+    const ticker = tickers.findBy('asset', asset);
+    if (isNone(ticker)) {
+      // console.log(`did not find ticker for ${asset}`);
+      return 'N/A';
+    }
+    const basePrice = +get(ticker, 'price');
+    return (basePrice * +qty).toFixed(8);
+  },
 });

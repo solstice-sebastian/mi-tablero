@@ -43,6 +43,7 @@ export default Route.extend({
         const currentPrice = get(ticker, 'price');
         if (currentPrice !== get(asset, 'currentPrice')) {
           asset.updatePrice(currentPrice);
+          asset.updateBaseValue();
         }
       }
     });

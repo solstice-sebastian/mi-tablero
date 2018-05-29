@@ -2,12 +2,14 @@ import { computed, get, set } from '@ember/object';
 import { gt, alias, not } from '@ember/object/computed';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
+import { inject } from '@ember/service';
 import DS from 'ember-data';
 import getPercentDiff from '../utils/get-percent-diff';
 
 const { attr, hasMany, belongsTo, Model } = DS;
 
 export default Model.extend({
+  tickerService: inject('ticker'),
   asset: attr('string'),
   currentPrice: attr('number'),
   openOrders: hasMany('order'),
@@ -45,6 +47,13 @@ export default Model.extend({
     }
     return '';
   }),
+
+  updateBaseValue() {
+    const asset = get(this, 'asset');
+    const qty = get(this, 'balance.qty');
+    const baseValue = get(this, 'tickerService').getBaseValue(asset, qty);
+    set(this, 'baseValue', baseValue);
+  },
 
   updatePrice(currentPrice) {
     set(this, 'isUpdatingPrice', true);
