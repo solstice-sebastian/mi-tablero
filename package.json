@@ -59,7 +59,7 @@
     "prettier": "^1.10.2"
   },
   "engines": {
-    "node": ">= 8.*"
+    "node": "8.9.4"
   },
   "dependencies": {
     "dotenv": "^5.0.1"
