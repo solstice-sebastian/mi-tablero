@@ -7,4 +7,10 @@ export default DS.RESTAdapter.extend({
   host: computed(function() {
     return get(this, 'envVars.API_HOST');
   }),
+
+  headers: computed(function() {
+    const username = get(this, 'envVars.RECORD_MANAGER_USER');
+    const password = get(this, 'envVars.RECORD_MANAGER_PWD');
+    return JSON.stringify({ username, password });
+  }),
 });
