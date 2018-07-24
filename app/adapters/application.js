@@ -11,6 +11,9 @@ export default DS.RESTAdapter.extend({
   headers: computed(function() {
     const username = get(this, 'envVars.RECORD_MANAGER_USER');
     const password = get(this, 'envVars.RECORD_MANAGER_PWD');
-    return JSON.stringify({ username, password });
+    return {
+      authorization: JSON.stringify({ username, password }),
+      'Content-Type': 'application/json; charset=utf-8',
+    };
   }),
 });
