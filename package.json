@@ -16,8 +16,10 @@
     "eslint:fix": "eslint --fix ./*.js app config lib server tests",
     "start": "ember serve",
     "test": "ember test",
-    "dev": "ember server --environment=development --port=4242 --ssl=true",
-    "prod": "ember server --environment=production --port=4242 --ssl=true"
+    "dev:ssl": "ember server --environment=development --port=4242 --ssl=true",
+    "dev": "ember server --environment=development --port=4242",
+    "prod:ssl": "ember server --environment=production --port=4242 --ssl=true",
+    "prod": "ember server --environment=production --port=4242"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

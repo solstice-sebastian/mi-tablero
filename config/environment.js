@@ -65,8 +65,8 @@ module.exports = function(environment) {
    */
   const connectSrc = [`'self'`];
   if (environment !== undefined && isProd === false) {
-    if (ENV.VARS.ALLOW_ORIGIN !== undefined) {
-      connectSrc.push(`${ENV.VARS.ALLOW_ORIGIN}`);
+    if (ENV.VARS.API_HOST !== undefined) {
+      connectSrc.push(`${ENV.VARS.API_HOST}`);
     }
   }
   ENV.contentSecurityPolicy = {

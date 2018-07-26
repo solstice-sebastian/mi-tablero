@@ -7,10 +7,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Ember build",
+      "name": "build dev",
       "program": "${workspaceRoot}/node_modules/ember-cli/bin/ember",
       "args": [
-        "server"
+        "server",
+        "--environment=development"
       ]
     }
   ]

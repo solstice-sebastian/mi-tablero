@@ -13,7 +13,9 @@ export default DS.RESTAdapter.extend({
     const password = get(this, 'envVars.RECORD_MANAGER_PWD');
     return {
       authorization: JSON.stringify({ username, password }),
-      'Content-Type': 'application/json; charset=utf-8',
+      'Content-Type': 'application/json',
+      rando: 'header val',
+      Accept: 'application/json',
     };
   }),
 });
