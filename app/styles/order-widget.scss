@@ -23,6 +23,7 @@
   align-items: center;
   margin-top: 10px;
   margin-bottom: 30px;
+  max-width: 60
 }
 
 .order-inputs {
@@ -35,6 +36,7 @@
 .pl-table {
   display: inline-block;
   width: 60%;
+  max-width: 280px;
   position: relative;
   top: 8px;
 

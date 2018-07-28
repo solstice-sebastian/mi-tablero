@@ -14,7 +14,6 @@ export default DS.RESTAdapter.extend({
     return {
       authorization: JSON.stringify({ username, password }),
       'Content-Type': 'application/json',
-      rando: 'header val',
       Accept: 'application/json',
     };
   }),

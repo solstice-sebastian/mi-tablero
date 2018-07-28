@@ -16,6 +16,7 @@
     "eslint:fix": "eslint --fix ./*.js app config lib server tests",
     "start": "ember serve",
     "test": "ember test",
+    "dev:mirage": "ember server --environment=mirage --ssl=true",
     "dev:ssl": "ember server --environment=development --port=4242 --ssl=true",
     "dev": "ember server --environment=development --port=4242",
     "prod:ssl": "ember server --environment=production --port=4242 --ssl=true",

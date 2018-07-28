@@ -64,7 +64,7 @@ module.exports = function(environment) {
    * Content Security Policy
    */
   const connectSrc = [`'self'`];
-  if (environment !== undefined && isProd === false) {
+  if (environment !== undefined) {
     if (ENV.VARS.API_HOST !== undefined) {
       connectSrc.push(`${ENV.VARS.API_HOST}`);
     }
@@ -78,6 +78,7 @@ module.exports = function(environment) {
     'media-src': "'self'",
     'style-src': "'self' 'unsafe-inline'",
   };
+  console.log(`connectSrc:`, connectSrc);
 
   /**
    * addons
