@@ -14,7 +14,12 @@ export default Route.extend({
       set(this, 'base', base);
     }
 
-    return this.store.findAll('dashboard').then(() => this.store.peekAll('dashboard-asset'));
+    return this.store.findAll('dashboard').then((dashboards) => {
+      return {
+        activeAssets: this.store.peekAll('dashboard-asset'),
+        dashboards,
+      };
+    });
   },
 
   setupController(controller, model) {

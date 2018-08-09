@@ -2,6 +2,7 @@ export default {
   dashboards: [
     {
       id: 0,
+      'total-value': 0.0823942,
       'dashboard-assets': [
         {
           asset: 'BNB',
@@ -161,6 +162,7 @@ export default {
     },
     {
       id: 1,
+      'total-value': 3249.234,
       'dashboard-assets': [
         {
           asset: 'BTC',

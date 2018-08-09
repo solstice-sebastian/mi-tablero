@@ -1,8 +1,14 @@
+/* eslint-disable no-param-reassign */
+
 import DS from 'ember-data';
 
 export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
   normalize(modelClass, resourceHash, prop) {
     const assetsHash = resourceHash['dashboard-assets'];
+    resourceHash.totalValue = resourceHash['total-value'];
+    const { asset } = assetsHash[0];
+    const base = assetsHash[0].lastBuyIn.symbol.replace(asset, '');
+    resourceHash.currencySymbol = base === 'USD' ? '$' : base;
     assetsHash.forEach((dashboardAsset) => {
       let openOrders = [];
       if (dashboardAsset.openOrders.length > 0) {
@@ -17,7 +23,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
         balance.setProperties({ asset, free, qty, locked, id: asset });
       }
 
-      this.store.createRecord(
+      const record = this.store.createRecord(
         'dashboard-asset',
         Object.assign({}, dashboardAsset, {
           id: dashboardAsset.asset,
@@ -29,6 +35,10 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
           ),
         })
       );
+      if (resourceHash.dashboardAssets === undefined) {
+        resourceHash.dashboardAssets = [];
+      }
+      resourceHash.dashboardAssets.push(record);
     });
     return this._super(modelClass, resourceHash, prop);
   },

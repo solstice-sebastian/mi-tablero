@@ -6,7 +6,14 @@
       {{/paper-card-content}}
     {{/paper-card}}
   {{else}}
-    {{#each model as |activeAsset|}}
+    {{#each model.dashboards as |dashboard|}}
+      {{#paper-card class="md-card md-card--total-value"}}
+        {{#paper-card-content data-id="total-value-card"}}
+          TotalValue: {{dashboard.currencySymbol}}&nbsp;<span data-id="total-value">{{dashboard.totalValue}}</span>
+        {{/paper-card-content}}
+      {{/paper-card}}
+    {{/each}}
+    {{#each model.activeAssets as |activeAsset|}}
       {{#paper-card class="md-card"}}
 
         {{!-- asset info --}}

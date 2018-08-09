@@ -17,6 +17,14 @@
   flex-grow: 1;
   min-width: 350px;
   max-width: 50%;
+
+  &--total-value {
+    min-width: 48%;
+    font-weight: 500;
+    span {
+      color: purple;
+    }
+  }
 }
 
 .asset-stat {
