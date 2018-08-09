@@ -13,14 +13,23 @@
   background-color: rgba(128, 0, 255, 0.386);
 }
 
+.total-value-container {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .md-card {
   flex-grow: 1;
   min-width: 350px;
   max-width: 50%;
 
   &--total-value {
-    min-width: 48%;
+    width: 48%;
+    flex-wrap: wrap;
     font-weight: 500;
+    max-width: 100%;
     span {
       color: purple;
     }
