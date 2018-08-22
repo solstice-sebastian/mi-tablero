@@ -1,14 +1,17 @@
 /* eslint-disable no-param-reassign, no-shadow */
 
 import DS from 'ember-data';
+import { isEmpty } from '@ember/utils';
 
 export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
   normalize(modelClass, resourceHash, prop) {
     const assetsHash = resourceHash['dashboard-assets'];
     resourceHash.totalValue = resourceHash['total-value'];
-    const { asset } = assetsHash[0];
-    const base = assetsHash[0].lastBuyIn.symbol.replace(asset, '');
-    resourceHash.currencySymbol = base === 'USD' ? '$' : base;
+    if (isEmpty(assetsHash) === false) {
+      const { asset } = assetsHash[0];
+      const base = assetsHash[0].lastBuyIn.symbol.replace(asset, '');
+      resourceHash.currencySymbol = base === 'USD' ? '$' : base;
+    }
     assetsHash.forEach((dashboardAsset) => {
       let openOrders = [];
       if (dashboardAsset.openOrders.length > 0) {
