@@ -15,7 +15,7 @@ export default Component.extend({
   sliderValue: 5,
   stepValue: computed('order.isUsd', function() {
     if (get(this, 'order.isUsd')) {
-      return 1;
+      return 0.01;
     }
     return ONE_SATOSHI * 100;
   }),

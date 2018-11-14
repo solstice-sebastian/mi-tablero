@@ -26,6 +26,13 @@ export default Model.extend({
     return status === 'NEW' || status === 'PARTIALLY_FILLED' || status === 'active';
   }),
 
+  prettyPrice: computed('price', function() {
+    if (get(this, 'isUsd')) {
+      return (+get(this, 'price')).toFixed(2);
+    }
+    return (+get(this, 'price')).toFixed(8);
+  }),
+
   isUsd: computed('symbol', function() {
     const symbol = get(this, 'symbol');
     if (isNone(symbol)) {

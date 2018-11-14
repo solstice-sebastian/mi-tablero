@@ -10,4 +10,8 @@ export default DS.Model.extend({
     const qty = +get(this, 'qty');
     return Number.isNaN(qty) || qty === 0;
   }),
+  prettyQty: computed('qty', function() {
+    const qty = +get(this, 'qty');
+    return qty.toFixed(8);
+  }),
 });
