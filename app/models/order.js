@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { computed, get } from '@ember/object';
+import { isNone } from '@ember/utils';
 
 const { attr, Model } = DS;
 
@@ -23,5 +24,14 @@ export default Model.extend({
   isOpen: computed('status', function() {
     const status = get(this, 'status');
     return status === 'NEW' || status === 'PARTIALLY_FILLED' || status === 'active';
+  }),
+
+  isUsd: computed('symbol', function() {
+    const symbol = get(this, 'symbol');
+    if (isNone(symbol)) {
+      console.log('missing symbol');
+      return false;
+    }
+    return symbol.toUpperCase().includes('USD');
   }),
 });

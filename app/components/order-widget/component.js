@@ -5,13 +5,20 @@ import { inject } from '@ember/service';
 import getPercentDiff from '../../utils/get-percent-diff';
 import calcPrettyPercent from '../../utils/calc-pretty-percent';
 
+const ONE_SATOSHI = 0.00000001;
+
 export default Component.extend({
   store: inject(),
   classNames: ['order-widget'],
 
   order: null,
   sliderValue: 5,
-  stepValue: 0.00000001,
+  stepValue: computed('order.isUsd', function() {
+    if (get(this, 'order.isUsd')) {
+      return 1;
+    }
+    return ONE_SATOSHI * 100;
+  }),
 
   /**
    * @param {Number} currentPrice passed from dashboardAsset
@@ -83,16 +90,16 @@ export default Component.extend({
     },
 
     changeLimitPrice(value) {
-      if (typeof +value.toFixed === 'function') {
-        set(this, 'order.price', +value.toFixed(8));
+      if (typeof (+value).toFixed === 'function') {
+        set(this, 'order.price', (+value).toFixed(8));
       } else {
         set(this, 'order.price', value);
       }
     },
 
     changeStopPrice(value) {
-      if (typeof +value.toFixed === 'function') {
-        set(this, 'order.stopPrice', +value.toFixed(8));
+      if (typeof (+value).toFixed === 'function') {
+        set(this, 'order.stopPrice', (+value).toFixed(8));
       } else {
         set(this, 'order.stopPrice', value);
       }

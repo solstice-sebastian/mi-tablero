@@ -4,7 +4,7 @@ export default function getPercentDiff(start, end, digits = 10) {
 
   let diff;
   if (_end < _start) {
-    diff = (_start - _end) / _start * -1;
+    diff = ((_start - _end) / _start) * -1;
   } else {
     diff = (_end - _start) / _start;
   }
