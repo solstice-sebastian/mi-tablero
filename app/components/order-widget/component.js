@@ -17,7 +17,7 @@ export default Component.extend({
     if (get(this, 'order.isUsd')) {
       return 0.01;
     }
-    return ONE_SATOSHI * 100;
+    return ONE_SATOSHI * 5;
   }),
 
   /**
