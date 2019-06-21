@@ -3,8 +3,8 @@ set -x
 mkdir tmp
 cp -R dist tmp/
 cp scripts/server.js tmp/
+cp scripts/package.json tmp/
 cp Procfile tmp/
-cp package.json tmp/
 cp yarn.lock tmp/
 cd tmp
 git init

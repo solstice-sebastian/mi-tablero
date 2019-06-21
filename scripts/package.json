@@ -1,0 +1,22 @@
+{
+  "name": "mi-tablero",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "license": "MIT",
+  "author": "solstice.sebastian",
+  "repository": "",
+  "scripts": {
+    "start": "yarn serve:production",
+    "serve:production": "node server.js"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "minimist": "^1.2.0"
+  }
+}
