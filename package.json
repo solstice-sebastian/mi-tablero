@@ -7,8 +7,9 @@
   "author": "solstice.sebastian",
   "repository": "",
   "scripts": {
-    "build": "yarn clean && ember build",
-    "clean": "rm -rf dist tmp",
+    "build": "yarn clean && ember build --environment=development",
+    "build:production": "yarn clean && ember build --environment=production",
+    "clean": "rm -rf dist/ tmp/",
     "eslint:js": "eslint ./*.js app config lib server tests",
     "eslint:fix": "eslint --fix ./*.js app config lib server tests",
     "start": "ember serve",
@@ -18,7 +19,7 @@
     "dev": "ember server --environment=development --port=4242",
     "prod:ssl": "ember server --environment=production --port=4242 --ssl=true",
     "prod": "ember server --environment=production --port=4242",
-    "deploy": "yarn build && sh scripts/deploy.sh",
+    "deploy": "yarn build:production && sh scripts/deploy.sh",
     "serve:production": "node server.js",
     "serve:local": "yarn start"
   },
